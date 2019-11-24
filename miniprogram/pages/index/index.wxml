@@ -1,0 +1,25 @@
+<view class="movie-wrap p15" >
+  <navigator class="flex item" target="" url="/pages/movieDetail/movieDetail?id={{item.id}}" hover-class="none" open-type="navigate" wx:for="{{movielist}}" wx:key="{{index}}"> 
+    <view >
+      <image class="movie-img" src="{{item.images.large}}" mode="aspectFill">
+      </image>
+    </view>
+    <view class="des flex-1 ml10" >
+      <view class="title" >
+        {{item.title}}
+      </view>
+      <view class="rating" >
+        评分：{{item.rating.average}}分
+      </view>
+      <view class="actors">
+        主演：<text wx:for="{{item.casts}}" wx:key="{{index}}">{{item.name}}</text>
+      </view>
+      <view class="year" >
+        年份：{{item.year}}
+      </view>
+    </view>
+  </navigator>
+  <view class="list-no-more" wx:if="{{!hasmore}}">
+    我也是有底线的～～
+  </view>
+</view>

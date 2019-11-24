@@ -1,0 +1,17 @@
+<view class="movie-detail pr">
+  <view class="movie-wrap-bg1" style="background:url({{detail.images.large}}) no-repeat top/cover" />
+  <view class="mask" />
+  <view class="detail-wrap flex flex-sb">
+    <view>
+      <image class="movie-img" src="{{detail.images.large}}" mode="aspectFill" />
+    </view>
+    <view class="flex-1 cf">
+      <view class="title mb10">{{detail.title}}</view>
+      <view class="origin_title">{{detail.original_title}}</view>
+      <view class="rating">{{detail.rating.average}}分</view>
+      <view class="country mb10">{{detail.countries[0]}}</view>
+      <view class="directors">导演：{{detail.directors[0].name}}</view>
+    </view>
+  </view>
+  <view class="des">{{detail.summary}}</view>
+</view>

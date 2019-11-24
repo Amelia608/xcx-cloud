@@ -1,0 +1,44 @@
+page{
+  font-size:24rpx;
+}
+.flex{
+  display: flex;
+}
+.flex-1{
+  flex: 1;
+}
+.flex-c-vh{
+  justify-items: center;
+}
+.flex-sb{
+  justify-content: space-between
+}
+.mb10{
+ margin-bottom: 20rpx;
+}
+.ml10{
+margin-left: 20rpx;
+}
+.p15{
+  padding: 30rpx;
+}
+.p15vw{
+  padding: 0 30rpx;
+}
+.list-no-more{
+  font-size: 20rpx;
+  color: #ccc;
+  text-align: center;
+}
+.pr{
+  position: relative;
+}
+.pa{
+  position: absolute;
+}
+.bgf{
+  background: #fff;
+}
+.cf{
+  color: #fff;
+}

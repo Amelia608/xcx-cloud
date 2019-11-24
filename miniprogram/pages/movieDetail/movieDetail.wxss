@@ -1,0 +1,45 @@
+
+.movie-wrap-bg1{
+  height: 400rpx;
+  filter: blur(40rpx);
+  opacity: .4;
+}
+.mask{
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 400rpx;
+  top: 0;
+  background: #333;
+  z-index: -1;
+}
+.detail-wrap{
+  position: absolute;
+  top:0;
+  right: 0;
+  left: 0;
+  height: 400rpx;
+  z-index: 100;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.movie-img{
+  width: 280rpx;
+  height: 90%;
+  margin-right: 24rpx;
+}
+.title{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.rating{
+  color: yellow;
+  font-weight: bold;
+  margin-top: 10rpx;
+  font-size: 30rpx;
+}
+.des{
+  font-size: 24rpx;
+  color: #555;
+  padding: 20rpx;
+}

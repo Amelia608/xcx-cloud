@@ -1,0 +1,12 @@
+.movie-img{
+  width:200rpx;
+  height: 260rpx;
+}
+.item{
+  margin-bottom: 20rpx;
+}
+.title{
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
