@@ -6,7 +6,10 @@ Page({
    */
   data: {
     id:null,
-    detail:null
+    detail:null,
+    content:'',//评价内容
+    rate:'',//评分
+    images:[]//评论图片
   },
 
   /**
@@ -53,6 +56,52 @@ Page({
       wx.showToast({
         title: '数据请求失败',
       })
+    })
+  },
+  rateChange({ detail}){
+    console.log(detail)
+    this.setData({ rate: detail})
+  },
+  onContentChange({detail}){
+    this.setData({content:detail})
+  },
+  uploadImg(){
+    wx.chooseImage({
+      count: 4,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success:res=> {
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths
+        console.log('img',res)
+        this.setData({images:[...this.data.images,...tempFilePaths]})
+      }
+    })
+  },
+  submit(){
+    let promiseArr=[]
+    //异步上传评价图片
+    this.data.images.map(el=>{
+      promiseArr.push(new Promise((resolve,reject)=>{
+        let suffix=/\.\w+$/.exec(el)[0]
+        console.log(suffix)
+        wx.cloud.uploadFile({
+          cloudPath: new Date().getTime() + suffix,
+          filePath: el, // 文件路径
+          success: res => {
+            // get resource ID
+            console.log(res.fileID)
+            resolve()
+          },
+          fail: err => {
+            // handle error
+            reject()
+          }
+        })
+      }))
+    })
+    Promise.all(promiseArr).then(res=>{
+      console.log('all upload')
     })
   },
 

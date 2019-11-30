@@ -14,4 +14,20 @@
     </view>
   </view>
   <view class="des">{{detail.summary}}</view>
+  <van-field
+    value="{{ content }}"
+    placeholder="快来写一些评价吧～"
+    border="{{ true }}"
+    bind:change="onContentChange"
+  />
+  <van-rate value="{{ rate }}" bind:change="rateChange" />
+  <view>
+  <van-button type="warning" bindtap="uploadImg">上传图片</van-button>
+  <view class="content-img-wrap">
+    <image class="content-img" src="{{item}}" wx:for="{{images}}" wx:key="{{index}}"></image>
+  </view>
+  </view>
+  <view>
+  <van-button type="danger" size="large" block  bindtap="submit">提交评价</van-button>
+  </view>
 </view>

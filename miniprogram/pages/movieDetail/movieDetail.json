@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText":"电影详情",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-button": "/miniprogram_npm/@vant/weapp/button/index",
+    "van-rate": "/miniprogram_npm/@vant/weapp/rate/index",
+    "van-field": "/miniprogram_npm/@vant/weapp/field/index"
+  }
 }
