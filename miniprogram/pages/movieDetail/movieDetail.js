@@ -1,4 +1,5 @@
 // pages/movieDetail/movieDetail.js
+const db=wx.cloud.database()
 Page({
 
   /**
@@ -9,7 +10,8 @@ Page({
     detail:null,
     content:'',//评价内容
     rate:'',//评分
-    images:[]//评论图片
+    images:[],//评论图片
+    fileIds:[],//评价图片上传返回的ids
   },
 
   /**
@@ -43,6 +45,7 @@ Page({
   getdetail(){
     wx.showLoading({
       title: '数据加载中',
+      mask:true
     })
     wx.cloud.callFunction({
       name:'getdetail',
@@ -79,18 +82,22 @@ Page({
     })
   },
   submit(){
+    wx.showLoading({
+      title: '提交中...',
+      mask: true
+    })
     let promiseArr=[]
     //异步上传评价图片
     this.data.images.map(el=>{
       promiseArr.push(new Promise((resolve,reject)=>{
+        // 获取图片名称的后缀名
         let suffix=/\.\w+$/.exec(el)[0]
         console.log(suffix)
         wx.cloud.uploadFile({
           cloudPath: new Date().getTime() + suffix,
           filePath: el, // 文件路径
           success: res => {
-            // get resource ID
-            console.log(res.fileID)
+            this.setData({ fileIds: [...this.data.fileIds,res.fileID]})
             resolve()
           },
           fail: err => {
@@ -100,8 +107,21 @@ Page({
         })
       }))
     })
+    //所有图片上传至数据库成功后提交评价内容
     Promise.all(promiseArr).then(res=>{
-      console.log('all upload')
+      db.collection('comment').add({
+        data:{
+          content:this.data.content,
+          score:this.data.rate,
+          movieId:this.data.id,
+          images:this.data.fileIds
+        },
+        success:()=>{
+          wx.hideLoading()
+          wx.showToast({ title:'评价成功',icon:'none'})
+        }
+      })
+     
     })
   },
 
