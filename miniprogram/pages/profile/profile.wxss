@@ -1,1 +1,24 @@
 /* pages/profile/profile.wxss */
+.header{
+  background: #d81e06;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400rpx;
+}
+.userinfo-avatar {  
+  overflow:hidden;  
+  display: block;  
+  width: 160rpx;  
+  height: 160rpx;  
+  margin-bottom: 20rpx;  
+  border-radius: 50%;  
+  border: 4rpx solid #fff;  
+  box-shadow: #666 0 0 16rpx; 
+} 
+.name{
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: bold;
+  text-align: center;
+}

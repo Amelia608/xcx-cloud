@@ -20,6 +20,7 @@ Page({
   onLoad: function (options) {
     this.setData({id:options.id})
     this.getdetail()
+    this.getcomment()
   },
 
   /**
@@ -67,6 +68,15 @@ Page({
   },
   onContentChange({detail}){
     this.setData({content:detail})
+  },
+  getcomment(){
+    db.collection('comment').where({
+      movieId:this.data.id
+    }).get({
+      success:res=>{
+        console.log('评论详情',res)
+      }
+    })
   },
   uploadImg(){
     wx.chooseImage({
